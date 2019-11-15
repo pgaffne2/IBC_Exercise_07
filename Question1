@@ -1,0 +1,14 @@
+data <- read.csv("iris.csv")
+
+#Question 1
+odd_rows <- function(x){
+  odds <- x
+  odds[1:nrow(x),1:5] <- NA
+  for (i in seq(1,nrow(x),2)){
+    odds[i,] = x[i,]
+  }
+  odds <- na.omit(odds)
+  return(odds);
+}
+ #function call
+odd_rows(data)
