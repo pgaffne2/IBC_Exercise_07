@@ -1,0 +1,38 @@
+data <- read.csv("iris.csv")
+
+#Question 1
+odd_rows <- function(x){
+  odds <- x
+  odds[1:nrow(x),1:5] <- NA
+  for (i in seq(1,nrow(x),2)){
+    odds[i,] = x[i,]
+  }
+  odds <- na.omit(odds)
+  return(odds);
+}
+
+#Question 2
+
+#Part 1
+ observations <- function(x,taxa){
+   subset <- x[x$Species == taxa,]
+   return(nrow(subset));
+  }
+
+#Part 2
+sepal_width <- function(width){
+  widths <- data[data[,2] > width,]
+  return(widths);
+}
+
+#Part 3
+species <- function(x,taxa){
+  subset <- x[x$Species == taxa,]
+  write.csv(subset, file = paste(taxa, ".csv", sep=""))
+}
+
+#function calls
+odd_rows(data)
+observations(data,"virginica")
+sepal_width(3.5)
+species(data,"setosa")
